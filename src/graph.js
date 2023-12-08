@@ -71,43 +71,49 @@ class Graph {
         }
     }
 
-    shortestPathBFS(start, end) {
-        let q = new Queue()
+    #findPath(start,end,path = {}){
+        let npath = []
 
+        npath.push(end)
+        let tmp = path[end]
+
+        while(tmp != start){
+            npath.push(tmp)
+            tmp = path[tmp]
+        }
+
+        return npath.reverse()
+    }
+
+    shortestPathBFS(start,end) {
         // create a map from the adjacenecy list and set the distance from every vertex to source as infinity 
         let dist = new Map(Object.keys(this.AdjancencyList).map(keys => [keys, Infinity]))
         let visited = []
+        let path = {}
+        let q = new Queue()
 
-        dist.set(start, 0)
-        visited.push(start)
         q.push(start)
+        dist.set(start,0)
+        visited.push(start)
 
-        while (!q.empty()) {
-            // remove the first element of the queue 
+        while(!q.empty()){
             let current = q.pop()
 
-            // get the adjacent vertices of current vertex 
             let adj = this.adjacent(current)
-
-
-            for (const x in adj) {
-                
-                // if adjacent vertex isn't visited , add it to the visited list ( to avoid infinite loop)
-                if (!visited.includes(adj[x])) {
-                    visited.push(adj[x])
-
-                    // set the distance of that adjacent vertex to 1 + the distance from source vertex
-                    dist.set(adj[x], dist.get(current) + 1)
-
-                    // if we find the vertex we are looking for , stop searching 
-                    if (adj[x] === end) {
-                        return `${end} is ${dist.get(adj[x])} from ${start}`
-                    }
-                    // add adjacent vertex to queue
+            for(let x in adj ){
+                if(!visited.includes(adj[x]))
+                {
+                    visited.push(current)
+                    dist.set(adj[x] , dist.get(current)+1)
+                    path[adj[x]] = current
                     q.push(adj[x])
                 }
+
             }
         }
+        let np = this.#findPath(start,end,path)
+        console.log(`you made it from ${start} to ${end} in ${dist.get(end)}`)
+        console.log(`your path is ${np}`)
     }
 }
 

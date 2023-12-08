@@ -28,4 +28,4 @@ board.forEach(element => {
 });
 
 
-console.log(g.shortestPathBFS('f5','h8'))
+g.shortestPathBFS('a1','h8')
