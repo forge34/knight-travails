@@ -1,5 +1,6 @@
 import { Graph ,number,letters,board} from "./graph";
 
+// possible moves of knight
 let possibleMoves = [
     [ -1, 2 ],  [ -1, -2 ],
     [ 1, 2 ],   [ 1, -2 ],
@@ -9,6 +10,7 @@ let possibleMoves = [
 
 let g = new Graph()
 
+// function to fill adjcanecy list of all possible moves
 function fillGraph(start){
     let l= letters.indexOf(start[0])
     let n = number.indexOf(start[1])
@@ -28,4 +30,4 @@ board.forEach(element => {
 });
 
 
-g.shortestPathBFS('a1','h8')
+g.shortestPathBFS('f5','h8')

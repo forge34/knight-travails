@@ -1,3 +1,7 @@
+/*
+* maybe an unecessary implementation of a Queue 
+ */
+
 class Queue {
     constructor() {
         this.head = 0;
@@ -6,11 +10,7 @@ class Queue {
     }
 
     push(element){
-       
-        if (Array.isArray(element)){
-            element.forEach(e => this.elements.push(e))
-        }
-        else this.elements[this.head] = element
+        this.elements[this.head] = element
         this.head++
     }
 
@@ -25,10 +25,6 @@ class Queue {
 
     front(){
         return this.elements[this.tail]
-    }
-
-    clear(){
-        this.elements = new Array(0)
     }
 }
 

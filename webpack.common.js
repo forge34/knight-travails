@@ -11,33 +11,6 @@ module.exports = {
 
   },
 
-  module: {
-
-    rules: [
-
-      {
-
-        test: /\.css$/i,
-
-        use: ['style-loader', 'css-loader'],
-
-      },
-
-    ],
-
-  },
-
-  plugins: [
-
-    new HtmlWebpackPlugin({
-
-      title: 'Title',
-      template:'./src/html/index.html'
-
-    }),
-
-  ],
-
   output: {
 
     filename: '[name].bundle.js',
